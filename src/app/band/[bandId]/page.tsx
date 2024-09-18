@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getBandById } from '@/mocks/mock.helper';
 import { Band } from '@/types/band.types';
+import { Link as MuiLink } from '@mui/material';
 
 interface BandProps {
   params: {
@@ -47,7 +48,7 @@ const BandPage = (props: BandProps) => {
     <div className='flex flex-col items-center'>
       <h1 className='font-bold text-2xl text-gray-400'>{name}</h1>
       <Link href='/' className='text-xs mb-4'>
-        back to the bands list
+        <MuiLink>← Back to the bands list</MuiLink>
       </Link>
       <Image src={image} alt={name} width={200} height={200} className='mb-4' />
       <h2 className='pb-2 text-gray-400 font-semibold'>Members</h2>
@@ -58,7 +59,9 @@ const BandPage = (props: BandProps) => {
             return (
               <li key={member.id}>
                 <Link href={`/band/${band.id}/member/${member.id}`}>
-                  {firstName} {lastName} ({instruments.join(', ')})
+                  <MuiLink>
+                    {firstName} {lastName} ({instruments.join(', ')})
+                  </MuiLink>
                 </Link>
               </li>
             );

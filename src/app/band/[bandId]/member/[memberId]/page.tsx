@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import { getBandMemberById } from '@/mocks/mock.helper';
+import { Link as MuiLink } from '@mui/material';
 
 import { BandMember } from '../../../../../types/band.types';
 
@@ -42,7 +43,7 @@ export default function MemberPage(props: MemberPageProps) {
         {`${firstName} ${lastName}`}
       </h1>
       <Link href={`/band/${bandId}`} className='mb-4 text-xs'>
-        back to the band page
+        <MuiLink>← Back to the band page</MuiLink>
       </Link>
       <div className='border flex items-center justify-center text-red-600 font-bold w-[200px] h-[200px] mb-4 bg-red-100'>
         IMAGE HERE
