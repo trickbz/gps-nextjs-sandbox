@@ -11,7 +11,7 @@ export const Header = () => {
         <Image src='/images/logo.png' alt='logo' width={50} height={50} />
       </Link>
       <div className='flex-auto flex justify-center text-orange-500 font-bold text-4xl'>
-        Band Database
+        Hearts Club Band
       </div>
       <Button variant='outlined' color='primary' size='small'>
         Add Band
