@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
+import type {Metadata} from 'next';
 import './globals.css';
 
 import localFont from 'next/font/local';
 
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
+import {Footer} from '@/components/footer';
+import {Header} from '@/components/header';
+import {Menu} from '@/components/Menu';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -35,6 +36,7 @@ export default function RootLayout({
       >
         <div className='flex flex-col w-[800px] h-screen'>
           <Header />
+          <Menu />
           <div className='flex-1 bg-white p-4'>{children}</div>
           <Footer />
         </div>

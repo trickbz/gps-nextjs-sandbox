@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
-import { BandListItem } from '@/components/band-list-item';
-import { BANDS_MOCK } from '@/mocks/bands.mock';
-import { Band } from '@/types/band.types';
+import {BandListItem} from '@/components/band-list-item';
+import {BANDS_MOCK} from '@/mocks/bands.mock';
+import {Band} from '@/types/band.types';
+import {ROUTES} from '@/constants/routes';
 
 export default function Home() {
   const [bands, setBands] = useState<Band[]>([]);
@@ -23,7 +24,7 @@ export default function Home() {
       <ul className='text-gray-600'>
         {bands.map((band) => (
           <li key={band.id}>
-            <Link href={`/band/${band.id}`}>
+            <Link href={ROUTES.BANDS.BAND(band.id)}>
               <BandListItem band={band} />
             </Link>
           </li>

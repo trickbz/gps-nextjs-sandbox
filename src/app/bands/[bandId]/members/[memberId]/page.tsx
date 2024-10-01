@@ -1,12 +1,12 @@
 'use client';
 
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
-import { getBandMemberById } from '@/mocks/mock.helper';
-import { Link as MuiLink } from '@mui/material';
+import {getBandMemberById} from '@/mocks/mock.helper';
 
-import { BandMember } from '../../../../../types/band.types';
+import {BandMember} from '../../../../../types/band.types';
+import {ROUTES} from '@/constants/routes';
+import {NavLink} from '@/components/NavLink';
 
 interface MemberPageProps {
   params: {
@@ -17,7 +17,7 @@ interface MemberPageProps {
 
 export default function MemberPage(props: MemberPageProps) {
   const {
-    params: { memberId, bandId },
+    params: {memberId, bandId},
   } = props;
   const [member, setMember] = useState<BandMember | undefined>();
 
@@ -35,16 +35,16 @@ export default function MemberPage(props: MemberPageProps) {
     return <div>Loading...</div>;
   }
 
-  const { firstName, lastName, instruments, description } = member;
+  const {firstName, lastName, instruments, description} = member;
 
   return (
     <main className='flex flex-col items-center'>
       <h1 className='text-2xl font-bold text-gray-400'>
         {`${firstName} ${lastName}`}
       </h1>
-      <Link href={`/band/${bandId}`} className='mb-4 text-xs'>
-        <MuiLink>← Back to the band page</MuiLink>
-      </Link>
+      <NavLink href={ROUTES.BANDS.BAND(bandId)} className='mb-4 text-xs'>
+        ← Back to the band page
+      </NavLink>
       <div className='border flex items-center justify-center text-red-600 font-bold w-[200px] h-[200px] mb-4 bg-red-100'>
         IMAGE HERE
       </div>
