@@ -1,0 +1,12 @@
+.link {
+  color: var(--link);
+  color: var(--text);
+  font-weight: lighter;
+  text-decoration: none;
+}
+
+.active {
+  cursor: default;
+  font-weight: normal;
+  font-weight: bold;
+}
