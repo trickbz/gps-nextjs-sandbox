@@ -9,7 +9,7 @@ interface Post {
 }
 
 export default async function PostListPage() {
-  const response = await fetch('https://jsonplaceholder.typicode.com/pos1ts');
+  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
   const posts = await response.json();
 
   return (
