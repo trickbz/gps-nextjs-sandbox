@@ -9,4 +9,5 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - [ ] prettier Tailwind plugin to sort classes, @apply and @layer Tailwind directive to combine classes, JIT mode
 - [x] move prettier settings from settings.json to .pretierrc
 - [ ] integrate recoil. Recoil dev tola. Async selectors. Suspense error boundary. 
-- [ ] SOLID 
+- [ ] SOLID
+- [ ] Mono repository. Update skills. 
