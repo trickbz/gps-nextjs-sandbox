@@ -1,4 +1,4 @@
-import { Band } from '@/types/band.types';
+import {Band} from '@/types/band.types';
 
 export const BANDS_MOCK: Band[] = [
   {

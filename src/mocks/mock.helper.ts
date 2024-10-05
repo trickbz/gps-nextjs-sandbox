@@ -1,12 +1,8 @@
-import { Band, BandMember } from '@/types/band.types';
+import {BANDS_MOCK} from './bands.mock';
+import {Band, BandMember} from '@/types/band.types';
 
-import { BANDS_MOCK } from './bands.mock';
-
-export const getBandById = async (
-  bandId: string,
-): Promise<Band | undefined> => {
-  return Promise.resolve(BANDS_MOCK.find((band) => band.id === bandId));
-};
+export const getBandById = async (bandId: string): Promise<Band | undefined> =>
+  BANDS_MOCK.find((band) => band.id === bandId);
 
 export const getBandMemberById = async (
   bandId: string,

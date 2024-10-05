@@ -2,11 +2,10 @@
 
 import React, {useEffect, useState} from 'react';
 
-import {getBandMemberById} from '@/mocks/mock.helper';
-
 import {BandMember} from '../../../../../types/band.types';
-import {ROUTES} from '@/constants/routes';
 import {NavLink} from '@/components/NavLink';
+import {ROUTES} from '@/constants/routes';
+import {getBandMemberById} from '@/mocks/mock.helper';
 
 interface MemberPageProps {
   params: {
@@ -38,23 +37,23 @@ export default function MemberPage(props: MemberPageProps) {
   const {firstName, lastName, instruments, description} = member;
 
   return (
-    <main className='flex flex-col items-center'>
-      <h1 className='text-2xl font-bold text-gray-400'>
+    <main className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold text-gray-400">
         {`${firstName} ${lastName}`}
       </h1>
-      <NavLink href={ROUTES.BANDS.BAND(bandId)} className='mb-4 text-xs'>
+      <NavLink href={ROUTES.BANDS.BAND(bandId)} className="mb-4 text-xs">
         ← Back to the band page
       </NavLink>
-      <div className='border flex items-center justify-center text-red-600 font-bold w-[200px] h-[200px] mb-4 bg-red-100'>
+      <div className="border flex items-center justify-center text-red-600 font-bold w-[200px] h-[200px] mb-4 bg-red-100">
         IMAGE HERE
       </div>
-      <h2 className='font-semibold text-gray-400 mb-2'>Instruments</h2>
-      <ul className='mb-4'>
+      <h2 className="font-semibold text-gray-400 mb-2">Instruments</h2>
+      <ul className="mb-4">
         {instruments.map((instrument) => (
-          <li key={instrument}>– {instrument}</li>
+          <li key={instrument}>–{instrument}</li>
         ))}
       </ul>
-      <div className='border min-w-[200px] rounded-md bg-yellow-50 p-4 indent-4'>
+      <div className="border min-w-[200px] rounded-md bg-yellow-50 p-4 indent-4">
         {description}
       </div>
     </main>

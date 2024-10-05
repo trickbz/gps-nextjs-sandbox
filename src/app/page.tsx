@@ -4,9 +4,9 @@ import Link from 'next/link';
 import {useEffect, useState} from 'react';
 
 import {BandListItem} from '@/components/band-list-item';
+import {ROUTES} from '@/constants/routes';
 import {BANDS_MOCK} from '@/mocks/bands.mock';
 import {Band} from '@/types/band.types';
-import {ROUTES} from '@/constants/routes';
 
 export default function Home() {
   const [bands, setBands] = useState<Band[]>([]);
@@ -17,11 +17,11 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='flex items-center flex-col'>
-      <h1 className='font-bold text-2xl mb-8 text-gray-400'>
+    <main className="flex items-center flex-col">
+      <h1 className="font-bold text-2xl mb-8 text-gray-400">
         Bands list ({bands.length})
       </h1>
-      <ul className='text-gray-600'>
+      <ul className="text-gray-600">
         {bands.map((band) => (
           <li key={band.id}>
             <Link href={ROUTES.BANDS.BAND(band.id)}>

@@ -1,14 +1,14 @@
 'use client';
 
+import React, {ChangeEvent, useCallback, useEffect, useState} from 'react';
+
 import {Todo} from '@/app/api/todos/route';
-import React, {useEffect, useState, useCallback, ChangeEvent} from 'react';
 
 export default function TodoPage() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const fetchTodos = useCallback(async () => {
-    const todos = await fetch('/api/todos').then((t) => t.json());
-    console.log('todos', todos);
-    setTodos(todos);
+    const fetchedTodos = await fetch('/api/todos').then((t) => t.json());
+    setTodos(fetchedTodos);
   }, []);
   const [newTodoText, setNewTodoText] = useState<string>('');
 
@@ -64,7 +64,7 @@ export default function TodoPage() {
   };
 
   const handleNewTodoTextChanged = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const {value} = e.target;
     setNewTodoText(value);
   };
 
@@ -79,43 +79,43 @@ export default function TodoPage() {
 
   return (
     <div>
-      <div className='mb-4 text-2xl font-semibold'>
+      <div className="mb-4 text-2xl font-semibold">
         Simple todo app using API routes
       </div>
-      <div className='mb-2 bg-yellow-100 p-2'>
+      <div className="mb-2 bg-yellow-100 p-2">
         <input
           onChange={handleNewTodoTextChanged}
-          type='text'
+          type="text"
           value={newTodoText}
-          className='mr-1'
+          className="mr-1"
         />
         <button
           onClick={handleAddTodoClick}
           disabled={newTodoText.length === 0}
+          type="button"
         >
           Add todo
         </button>
       </div>
-      <div className='flex flex-col bg-yellow-100 p-2'>
-        {todos.map((todo: Todo) => {
-          return (
-            <div key={todo.id} className='flex mb-1 last:mb-0'>
-              <input
-                type='checkbox'
-                checked={todo.completed}
-                className='mr-2'
-                onChange={() => handCompletedChange(todo)}
-              />
-              <div className='mr-1'>{todo.title}</div>
-              <button
-                className='pl-1 pr-1'
-                onClick={() => handleDeleteClick(todo)}
-              >
-                X
-              </button>
-            </div>
-          );
-        })}
+      <div className="flex flex-col bg-yellow-100 p-2">
+        {todos.map((todo: Todo) => (
+          <div key={todo.id} className="flex mb-1 last:mb-0">
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              className="mr-2"
+              onChange={() => handCompletedChange(todo)}
+            />
+            <div className="mr-1">{todo.title}</div>
+            <button
+              className="pl-1 pr-1"
+              onClick={() => handleDeleteClick(todo)}
+              type="button"
+            >
+              X
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

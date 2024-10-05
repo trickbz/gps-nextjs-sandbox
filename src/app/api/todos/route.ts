@@ -10,9 +10,7 @@ export interface Todo {
 
 let todos: Todo[] = [];
 
-export const GET = async () => {
-  return NextResponse.json(todos);
-};
+export const GET = async () => NextResponse.json(todos);
 
 export const POST = async (request: NextRequest) => {
   const todo: Todo = await request.json();

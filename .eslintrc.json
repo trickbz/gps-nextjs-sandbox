@@ -1,3 +1,39 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "eslint-config-airbnb"
+  ],
+  "plugins": ["import", "react"],
+  "rules": {
+    "object-curly-spacing": "off",
+    "no-unused-vars": "warn",
+    "import/extensions": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/order": "off",
+    "no-shadow": "warn",
+    "react/jsx-one-expression-per-line": "off",
+    "no-plusplus": "warn",
+    "import/prefer-default-export": "off",
+    "no-console": "warn",
+    "react/require-default-props": "off",
+    "implicit-arrow-linebreak": "warn",
+    "react/jsx-filename-extension": [
+      1,
+      {"extensions": [".js", ".jsx", ".tsx"]}
+    ],
+    "react/jsx-curly-brace-presence": [
+      "error",
+      {"props": "never", "children": "never"}
+    ],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": {"consistent": true, "multiline": true},
+        "ObjectPattern": {"consistent": true, "multiline": true},
+        "ImportDeclaration": "never",
+        "ExportDeclaration": {"multiline": true, "minProperties": 3}
+      }
+    ]
+  }
 }

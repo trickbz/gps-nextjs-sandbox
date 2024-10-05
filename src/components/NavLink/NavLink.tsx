@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import React, {ReactNode} from 'react';
+
 import s from './NavLink.module.css';
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
   className?: string;
 }
 
-export const NavLink = (props: Props) => {
+export function NavLink(props: Props) {
   const {children, href, className = ''} = props;
   const pathname = usePathname();
   const isActive = pathname === href;
@@ -32,4 +33,4 @@ export const NavLink = (props: Props) => {
       {children}
     </Link>
   );
-};
+}

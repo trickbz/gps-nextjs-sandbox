@@ -1,11 +1,12 @@
 import type {Metadata} from 'next';
-import './globals.css';
-
 import localFont from 'next/font/local';
+import {ReactNode} from 'react';
 
+import {Menu} from '@/components/Menu';
 import {Footer} from '@/components/footer';
 import {Header} from '@/components/header';
-import {Menu} from '@/components/Menu';
+
+import './globals.css';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -27,17 +28,17 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} border-gray-500 h-screen flex flex-col items-center bg-black`}
       >
-        <div className='flex flex-col w-[800px] h-screen'>
+        <div className="flex flex-col w-[800px] h-screen">
           <Header />
           <Menu />
-          <div className='flex-1 bg-white p-4'>{children}</div>
+          <div className="flex-1 bg-white p-4">{children}</div>
           <Footer />
         </div>
       </body>

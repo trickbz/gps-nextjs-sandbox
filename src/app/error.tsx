@@ -11,7 +11,9 @@ export default function Error({
     <div>
       <h2>Oops, something went wrong!</h2>
       <p>{error.message}</p>
-      <button onClick={reset}>Try Again</button>
+      <button onClick={reset} type="button">
+        Try Again
+      </button>
     </div>
   );
 }
