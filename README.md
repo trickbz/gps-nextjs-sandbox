@@ -12,4 +12,5 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - [ ] SOLID
 - [ ] Mono repository. Update skills. 
 -[ ] convert snake case to camel case
-- [ ] real DB and ORM (Prisma?) 
+- [ ] real DB and ORM (Prisma?)
+- [ ] OAuth
