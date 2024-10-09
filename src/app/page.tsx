@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import {useEffect, useState} from 'react';
 
-import {BandListItem} from '@/components/band-list-item';
+import {BandListItem} from '@/components/BandListItem';
 import {ROUTES} from '@/constants/routes';
 import {BANDS_MOCK} from '@/mocks/bands.mock';
 import {Band} from '@/types/band.types';

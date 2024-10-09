@@ -2,9 +2,10 @@ import type {Metadata} from 'next';
 import localFont from 'next/font/local';
 import {ReactNode} from 'react';
 
+import {Footer} from '@/components/Footer';
+import {Header} from '@/components/Header';
 import {Menu} from '@/components/Menu';
-import {Footer} from '@/components/footer';
-import {Header} from '@/components/header';
+import RecoilContextProvider from '@/lib/RecoilContextProvider';
 
 import './globals.css';
 
@@ -36,10 +37,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} border-gray-500 h-screen flex flex-col items-center bg-black`}
       >
         <div className="flex flex-col w-[800px] h-screen">
-          <Header />
-          <Menu />
-          <div className="flex-1 bg-white p-4">{children}</div>
-          <Footer />
+          <RecoilContextProvider>
+            <Header />
+            <Menu />
+            <div className="flex-1 bg-white p-4">{children}</div>
+            <Footer />
+          </RecoilContextProvider>
         </div>
       </body>
     </html>

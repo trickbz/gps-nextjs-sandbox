@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Band {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique @db.VarChar(255)
+  description String?
+  image       String?
+  members     BandMember[]
+  albums      BandAlbum[]
+}
+
+model BandMember {
+  id                    Int                     @id @default(autoincrement())
+  first_name            String                  @db.VarChar(255)
+  last_name             String                  @db.VarChar(255)
+  description           String?
+  image                 String?
+  Band                  Band                    @relation(fields: [bandId], references: [id], onDelete: Cascade)
+  bandId                Int
+  BandMemberInstruments BandMemberInstruments[]
+}
+
+model Instrument {
+  id                    Int                     @id @default(autoincrement())
+  name                  String                  @unique
+  BandMemberInstruments BandMemberInstruments[]
+}
+
+model BandMemberInstruments {
+  id           Int        @id @default(autoincrement())
+  bandMemberId Int
+  BandMember   BandMember @relation(fields: [bandMemberId], references: [id], onDelete: Cascade)
+  instrumentId Int
+  Instrument   Instrument @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+}
+
+model BandAlbum {
+  id     Int         @id @default(autoincrement())
+  title  String      @db.VarChar(512)
+  image  String?
+  bandId Int
+  Band   Band        @relation(fields: [bandId], references: [id], onDelete: Cascade)
+  songs  AlbumSong[]
+}
+
+model AlbumSong {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(255)
+  lyrics      String?
+  duration    Int?
+  bandAlbumId Int
+  BandAlbum   BandAlbum @relation(fields: [bandAlbumId], references: [id], onDelete: Cascade)
+}

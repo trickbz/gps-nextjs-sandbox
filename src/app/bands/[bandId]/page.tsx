@@ -25,11 +25,11 @@ function BandsPage(props: BandsPageProps) {
 
   const fetchBand = useCallback(
     async (id: string) => {
-      const band = await getBandById(id);
-      if (!band) {
+      const foundBand = await getBandById(id);
+      if (!foundBand) {
         router.replace('/404');
       }
-      setBand(band);
+      setBand(foundBand);
     },
     [router],
   );
@@ -47,6 +47,7 @@ function BandsPage(props: BandsPageProps) {
   // TODO: Add default image if not provided
   const {name, image = '', description} = band || {};
 
+  // TODO: Load image to server
   return (
     <div className="flex flex-col items-center">
       <h1 className="font-bold text-2xl text-gray-400">{name}</h1>

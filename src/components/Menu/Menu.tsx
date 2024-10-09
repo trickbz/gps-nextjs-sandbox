@@ -11,6 +11,9 @@ export function Menu() {
       <NavLink href={ROUTES.HOME} className={s.link}>
         Home
       </NavLink>
+      <NavLink href={ROUTES.INSTRUMENTS.ROOT} className={s.link}>
+        Instruments
+      </NavLink>
       <NavLink href={ROUTES.SANDBOX}>Sandbox</NavLink>
     </nav>
   );

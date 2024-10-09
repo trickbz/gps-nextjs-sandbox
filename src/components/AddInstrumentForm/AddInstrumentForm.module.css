@@ -1,0 +1,15 @@
+.form {
+  @apply flex flex-row mb-2 p-2 border bg-yellow-100 border-gray-200 border-solid items-center;
+}
+
+.inputContainer {
+  @apply flex flex-col;
+}
+
+.input {
+  @apply mr-2;
+}
+
+.error {
+  @apply text-red-500 mt-1;
+}

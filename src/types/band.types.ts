@@ -1,7 +1,13 @@
-export type Instrument = 'Guitar' | 'Bass' | 'Drums' | 'Vocals' | 'Keyboard';
+export type Instrument =
+  | 'Guitar'
+  | 'Bass'
+  | 'Drums'
+  | 'Vocals'
+  | 'Keyboard'
+  | 'Harmonica';
 
 export type Album = {
-  id: string;
+  id: number;
   title: string;
   releaseDate: string;
   image?: string;
@@ -9,19 +15,32 @@ export type Album = {
 };
 
 export type BandMember = {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
   instruments: Instrument[];
-  image: string;
+  image?: string;
   description?: string;
 };
 
 export type Band = {
-  id: string;
+  id: number;
   name: string;
   description?: string;
   image?: string;
   members: BandMember[];
   albums: Album[];
+};
+
+export type Auth = {
+  email: string;
+  password: string;
+};
+
+export type User = {
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  avatar?: string;
+  loggedIn: boolean;
 };
