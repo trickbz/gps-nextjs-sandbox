@@ -58,6 +58,12 @@ CREATE TABLE "AlbumSong" (
     CONSTRAINT "AlbumSong_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Band_name_key" ON "Band"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Instrument_name_key" ON "Instrument"("name");
+
 -- AddForeignKey
 ALTER TABLE "BandMember" ADD CONSTRAINT "BandMember_bandId_fkey" FOREIGN KEY ("bandId") REFERENCES "Band"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 

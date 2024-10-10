@@ -1,0 +1,7 @@
+.errorMessage {
+  @apply text-red-500 m-0 mt-1;
+}
+
+.container {
+  @apply flex flex-col mb-2 last-of-type:mb-0;
+}

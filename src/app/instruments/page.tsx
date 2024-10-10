@@ -9,7 +9,8 @@ export default function InstrumentsPage() {
   const {instruments, addInstrument} = useInstruments();
 
   const onInstrumentAdded = (instrumentName: string) => {
-    addInstrument(instrumentName);
+    // TODO: To return rejected promise in case of error (duplicated instrument)
+    return addInstrument(instrumentName);
   };
 
   return (

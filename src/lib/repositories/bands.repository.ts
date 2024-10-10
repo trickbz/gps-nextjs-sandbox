@@ -9,6 +9,7 @@ export const getInstrumentsFromDb = async () => {
   return instruments;
 };
 
+// TODO: Fix / implement graceful error returned from API route
 export const addInstrumentToDb = async (name: string): Promise<Instrument> => {
   try {
     const instrument = await prisma.instrument.create({data: {name}});

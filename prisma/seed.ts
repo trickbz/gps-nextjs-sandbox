@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import prisma from '@/lib/db';
+import prisma from '../src/lib/db';
 
 async function clearDb() {
   await prisma.albumSong.deleteMany();

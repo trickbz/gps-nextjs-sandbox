@@ -1,9 +1,9 @@
-import {Button} from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import {AuthWidget} from './AuthWidget';
+import {AuthWidget} from '../AuthWidget';
+import CreateBandButton from './CreateBandButton';
 import {ROUTES} from '@/constants/routes';
 
 export function Header() {
@@ -15,9 +15,7 @@ export function Header() {
       <div className="flex-auto flex justify-center text-orange-500 font-bold text-4xl">
         Hearts Club Band
       </div>
-      <Button variant="outlined" color="primary" size="small" className="mr-1">
-        Add Band
-      </Button>
+      <CreateBandButton />
       <AuthWidget />
     </div>
   );

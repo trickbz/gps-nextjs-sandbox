@@ -14,6 +14,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - [ ] API: convert snake case to camel case
 - [x] real DB and ORM (Prisma?)
 - [ ] OAuth
+- [ ] Braedcrumbs
+- [ ] App icon (tab)
+- [ ] SEO data (metadata)
 
 ## Local developmentt
 - clone repository
@@ -31,4 +34,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
     - db user: postgres
     - db pwd : postgres
 
-## Migration usage TODO
+## DB migration usage (local development)
+- change the scheme
+- format schema if required: `npx prisma format`
+- delete migrations folder: `/prisma/migrations`
+- kill Docker containers with db and friend, compose down in docker extension
+- deploy docker container again: `docker-compose -f <path to compose file> up -d` (d - deamon, don't block the console, detached)
+- create a new migration: `npx prisma migrate dev --name init` (init - any name, migration will be created in migration folder, it will recreate Prisma client as well)
+- clear and seed the db: `npm run seed`
+- check that your changes in schema are correct

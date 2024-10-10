@@ -7,12 +7,12 @@ import {Auth} from '@/types/band.types';
 
 import s from './styles.module.css';
 
+// TODO: Replace with FormField
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: {errors},
-  } = useForm<Auth>();
+  const {register, handleSubmit, formState} = useForm<Auth>({
+    mode: 'all',
+  });
+  const {errors} = formState;
 
   const onSubmit: SubmitHandler<Auth> = (data) => alert(JSON.stringify(data));
 

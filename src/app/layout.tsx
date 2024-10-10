@@ -3,7 +3,7 @@ import localFont from 'next/font/local';
 import {ReactNode} from 'react';
 
 import {Footer} from '@/components/Footer';
-import {Header} from '@/components/Header';
+import {Header} from '@/components/Header/Header';
 import {Menu} from '@/components/Menu';
 import RecoilContextProvider from '@/lib/RecoilContextProvider';
 

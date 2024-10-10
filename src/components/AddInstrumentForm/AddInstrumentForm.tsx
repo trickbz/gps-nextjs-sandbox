@@ -3,6 +3,8 @@
 import React from 'react';
 import {useForm, SubmitHandler} from 'react-hook-form';
 
+import FormField from '../FormField/FormField';
+
 import s from './AddInstrumentForm.module.css';
 
 type NewInstrument = {
@@ -10,32 +12,33 @@ type NewInstrument = {
 };
 
 interface Props {
-  onInstrumentAdd: (instrument: string) => void;
+  onInstrumentAdd: (instrument: string) => Promise<void>;
 }
 
 export function AddInstrumentForm(props: Props) {
   const {onInstrumentAdd} = props;
-  const {
-    register,
-    handleSubmit,
-    formState: {errors, isValid},
-  } = useForm<NewInstrument>();
+  const {register, handleSubmit, formState, reset} = useForm<NewInstrument>({
+    mode: 'all',
+  });
 
   const onSubmit: SubmitHandler<NewInstrument> = ({name}) => {
-    onInstrumentAdd(name);
+    onInstrumentAdd(name).then(() => reset());
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
-      <div className={s.inputContainer}>
-        <input
-          {...register('name', {required: 'Required field'})}
-          className={s.input}
-          placeholder="Instrument name"
-        />
-        {errors.name && <p>{errors.name.message}</p>}
-      </div>
-      <button type="submit" disabled={!isValid}>
+      <FormField
+        formState={formState}
+        id="name"
+        label="Instrument"
+        name="name"
+        register={register}
+        registerOptions={{required: 'Required field'}}
+        showLabel={false}
+        placeholder="Instrument name"
+        className={s.input}
+      />
+      <button type="submit" disabled={!formState.isValid}>
         Add instrument
       </button>
     </form>
