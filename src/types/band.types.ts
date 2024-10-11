@@ -1,3 +1,5 @@
+import {Prisma} from '@prisma/client';
+
 export type Instrument =
   | 'Guitar'
   | 'Bass'
@@ -6,6 +8,38 @@ export type Instrument =
   | 'Keyboard'
   | 'Harmonica';
 
+export type BandWithMembers = Prisma.BandGetPayload<{
+  include: {
+    members: {
+      include: {
+        instruments: {
+          include: {
+            Instrument: true;
+          };
+        };
+      };
+    };
+  };
+}>;
+
+export type BandMemberWithInstruments = Prisma.BandMemberGetPayload<{
+  include: {
+    instruments: {
+      include: {
+        Instrument: true;
+      };
+    };
+  };
+  select: {
+    firstName: true;
+    lastName: true;
+    description: true;
+    image: true;
+    id: true;
+  };
+}>;
+
+// TODO: probably I'll need to remove all of them and use type from Prisma insteads
 export type Album = {
   id: number;
   title: string;

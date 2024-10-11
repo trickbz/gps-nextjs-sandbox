@@ -18,13 +18,13 @@ model Band {
 
 model BandMember {
   id                    Int                     @id @default(autoincrement())
-  first_name            String                  @db.VarChar(255)
-  last_name             String                  @db.VarChar(255)
+  firstName             String                  @map("first_name") @db.VarChar(255)
+  lastName             String                  @map("last_name") @db.VarChar(255)
   description           String?
   image                 String?
   Band                  Band                    @relation(fields: [bandId], references: [id], onDelete: Cascade)
   bandId                Int
-  BandMemberInstruments BandMemberInstruments[]
+  instruments BandMemberInstruments[]
 }
 
 model Instrument {

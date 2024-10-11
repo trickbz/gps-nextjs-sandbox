@@ -2,6 +2,7 @@ import {Instrument} from '@prisma/client';
 import {useCallback, useEffect, useState} from 'react';
 
 import {getErrorMessage} from '@/lib/apiHelper';
+import {Logger} from '@/lib/services/logging.service';
 
 type LoadingState = {
   isFetching: boolean;
@@ -29,8 +30,7 @@ export const useInstruments = () => {
       setInstruments(data);
     } catch (err) {
       const msg = getErrorMessage(err, 'Failed to get users.');
-      // eslint-disable-next-line no-console
-      console.error(msg);
+      Logger.error(msg);
       setError(msg);
     } finally {
       setLoadingState((prevState) => ({...prevState, isFetching: false}));
@@ -58,8 +58,7 @@ export const useInstruments = () => {
       await fetchInstruments(controller.signal);
     } catch (err) {
       const msg = getErrorMessage(err, 'Failed creating instrument.');
-      // eslint-disable-next-line no-console
-      console.error(msg);
+      Logger.error(msg);
       setError(msg);
     } finally {
       setLoadingState((prev) => ({...prev, isAdding: false}));

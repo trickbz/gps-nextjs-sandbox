@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import prisma from '../src/lib/db';
+import {Logger} from '../src/lib/services/logging.service';
 
 async function clearDb() {
   await prisma.albumSong.deleteMany();
@@ -7,7 +8,7 @@ async function clearDb() {
   await prisma.instrument.deleteMany();
   await prisma.bandMember.deleteMany();
 
-  console.log('Clearing completed!');
+  Logger.log('Clearing completed!');
 }
 
 async function seedDb() {
@@ -23,43 +24,52 @@ async function seedDb() {
     data: {
       name: 'The Beatles',
       description: 'Legendary British rock band formed in Liverpool in 1960.',
-      image: 'beatles.jpg',
+      image: 'http://localhost:8080/public/images/band_beatles.png',
       members: {
         create: [
           {
-            first_name: 'John',
-            last_name: 'Lennon',
+            firstName: 'John',
+            lastName: 'Lennon',
             image: 'john_lennon.jpg',
             description: 'Rhythm guitarist and lead singer',
-            BandMemberInstruments: {
-              create: {instrumentId: guitar.id},
+            instruments: {
+              create: [
+                {instrumentId: guitar.id},
+                {instrumentId: vocals.id},
+                {instrumentId: keyboards.id},
+              ],
             },
           },
           {
-            first_name: 'Paul',
-            last_name: 'McCartney',
+            firstName: 'Paul',
+            lastName: 'McCartney',
             image: 'paul_mccartney.jpg',
             description: 'Bass guitarist and singer',
-            BandMemberInstruments: {
-              create: {instrumentId: bass.id},
+            instruments: {
+              create: [
+                {instrumentId: bass.id},
+                {instrumentId: guitar.id},
+                {instrumentId: keyboards.id},
+                {instrumentId: vocals.id},
+              ],
             },
           },
           {
-            first_name: 'George',
-            last_name: 'Harrison',
+            firstName: 'George',
+            lastName: 'Harrison',
             image: 'george_harrison.jpg',
             description: 'Lead guitarist',
-            BandMemberInstruments: {
-              create: {instrumentId: guitar.id},
+            instruments: {
+              create: [{instrumentId: guitar.id}, {instrumentId: vocals.id}],
             },
           },
           {
-            first_name: 'Ringo',
-            last_name: 'Starr',
+            firstName: 'Ringo',
+            lastName: 'Starr',
             image: 'ringo_starr.jpg',
             description: 'Drummer',
-            BandMemberInstruments: {
-              create: {instrumentId: drums.id},
+            instruments: {
+              create: [{instrumentId: vocals.id}, {instrumentId: drums.id}],
             },
           },
         ],
@@ -84,42 +94,42 @@ async function seedDb() {
     data: {
       name: 'The Doors',
       description: 'American rock band formed in Los Angeles in 1965.',
-      image: 'doors.jpg',
+      image: 'http://localhost:8080/public/images/band_doors.jpg',
       members: {
         create: [
           {
-            first_name: 'Jim',
-            last_name: 'Morrison',
+            firstName: 'Jim',
+            lastName: 'Morrison',
             image: 'jim_morrison.jpg',
             description: 'Lead vocalist',
-            BandMemberInstruments: {
+            instruments: {
               create: {instrumentId: vocals.id},
             },
           },
           {
-            first_name: 'Robby',
-            last_name: 'Krieger',
+            firstName: 'Robby',
+            lastName: 'Krieger',
             image: 'robby_krieger.jpg',
             description: 'Guitarist',
-            BandMemberInstruments: {
+            instruments: {
               create: {instrumentId: guitar.id},
             },
           },
           {
-            first_name: 'Ray',
-            last_name: 'Manzarek',
+            firstName: 'Ray',
+            lastName: 'Manzarek',
             image: 'ray_manzarek.jpg',
             description: 'Keyboards',
-            BandMemberInstruments: {
+            instruments: {
               create: {instrumentId: keyboards.id},
             },
           },
           {
-            first_name: 'John',
-            last_name: 'Densmore',
+            firstName: 'John',
+            lastName: 'Densmore',
             image: 'john_densmore.jpg',
             description: 'Drummer',
-            BandMemberInstruments: {
+            instruments: {
               create: {instrumentId: drums.id},
             },
           },
@@ -146,42 +156,42 @@ async function seedDb() {
       name: 'Black Sabbath',
       description:
         'English rock band formed in Birmingham in 1968, pioneers of heavy metal.',
-      image: 'black_sabbath.jpg',
+      image: 'http://localhost:8080/public/images/band_black_sabbath.webp',
       members: {
         create: [
           {
-            first_name: 'Ozzy',
-            last_name: 'Osbourne',
+            firstName: 'Ozzy',
+            lastName: 'Osbourne',
             image: 'ozzy_osbourne.jpg',
             description: 'Lead vocalist',
-            BandMemberInstruments: {
+            instruments: {
               create: {instrumentId: vocals.id},
             },
           },
           {
-            first_name: 'Tony',
-            last_name: 'Iommi',
+            firstName: 'Tony',
+            lastName: 'Iommi',
             image: 'tony_iommi.jpg',
             description: 'Guitarist',
-            BandMemberInstruments: {
+            instruments: {
               create: {instrumentId: guitar.id},
             },
           },
           {
-            first_name: 'Geezer',
-            last_name: 'Butler',
+            firstName: 'Geezer',
+            lastName: 'Butler',
             image: 'geezer_butler.jpg',
             description: 'Bassist',
-            BandMemberInstruments: {
+            instruments: {
               create: {instrumentId: bass.id},
             },
           },
           {
-            first_name: 'Bill',
-            last_name: 'Ward',
+            firstName: 'Bill',
+            lastName: 'Ward',
             image: 'bill_ward.jpg',
             description: 'Drummer',
-            BandMemberInstruments: {
+            instruments: {
               create: {instrumentId: drums.id},
             },
           },
@@ -202,14 +212,14 @@ async function seedDb() {
     },
   });
 
-  console.log('Seeding completed!');
+  Logger.log('Seeding completed!');
 }
 
-console.log('Clearing and seeding the database...');
+Logger.log('Clearing and seeding the database...');
 clearDb()
   .then(() => seedDb())
   .catch((e) => {
-    console.error('Error in DB operation', e);
+    Logger.error('Error in DB operation', e);
     process.exit(1);
   })
   .finally(async () => {

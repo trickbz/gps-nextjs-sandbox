@@ -17,6 +17,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - [ ] Braedcrumbs
 - [ ] App icon (tab)
 - [ ] SEO data (metadata)
+- [x] Logger service to use console.log, console.error in one place only
 
 ## Local developmentt
 - clone repository
@@ -43,3 +44,11 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - create a new migration: `npx prisma migrate dev --name init` (init - any name, migration will be created in migration folder, it will recreate Prisma client as well)
 - clear and seed the db: `npm run seed`
 - check that your changes in schema are correct
+- if you change the seed data, you should run `npm run seed` again. But remember, that IDs are auto-generated, and e.g. if you are on the page of some member, and you refresh the page, it will call with not expected id. So go to the bands page and use lins to navigate to the band member with correct id.
+
+## Data access layers
+- BE > repository: access DB via ORM (e.g. Prisma) or other low level APIs and external services, atomic
+- BE > service: user one or several services implementing business logic
+- BE > API route: use services, provides REST / GraphQL endpoints for FE
+- FE > hook: like a service for FE, encapsulate logic of fetching API endpoints and providing data for components
+- FE > recoil: state management, can be used alone (including API calls in selectors, as alternative) or together with hooks

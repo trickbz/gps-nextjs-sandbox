@@ -41,15 +41,16 @@
       "error",
       {"props": "never", "children": "never"}
     ],
-    "object-curly-newline": [
-      "error",
-      {
-        "ObjectExpression": {"consistent": true, "multiline": true},
-        "ObjectPattern": {"consistent": true, "multiline": true},
-        "ImportDeclaration": "off",
-        "ExportDeclaration": {"multiline": true, "minProperties": 3}
-      }
-    ],
+    "object-curly-newline":"off",
+    // "object-curly-newline": [
+    //   "error",
+    //   {
+    //     "ObjectExpression": {"consistent": true, "multiline": true},
+    //     "ObjectPattern": {"consistent": true, "multiline": true},
+    //     "ImportDeclaration": "off",
+    //     "ExportDeclaration": {"multiline": true, "minProperties": 3}
+    //   }
+    // ],
     "jsx-a11y/label-has-associated-control": ["error", {
       "required": {
         "some": ["nesting", "id"]

@@ -1,13 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import {useRouter} from 'next/navigation';
-import React, {useCallback, useEffect, useState} from 'react';
+import React from 'react';
 
 import {NavLink} from '@/components/NavLink';
 import {ROUTES} from '@/constants/routes';
-import {getBandById} from '@/mocks/mock.helper';
-import {Band} from '@/types/band.types';
+import {useBandHook} from '@/hooks/bandHooks';
 
 interface BandsPageProps {
   params: {
@@ -19,24 +17,8 @@ function BandsPage(props: BandsPageProps) {
   const {
     params: {bandId},
   } = props;
-  const router = useRouter();
 
-  const [band, setBand] = useState<Band | undefined>();
-
-  const fetchBand = useCallback(
-    async (id: string) => {
-      const foundBand = await getBandById(id);
-      if (!foundBand) {
-        router.replace('/404');
-      }
-      setBand(foundBand);
-    },
-    [router],
-  );
-
-  useEffect(() => {
-    fetchBand(bandId);
-  }, [bandId, fetchBand]);
+  const {band} = useBandHook(bandId);
 
   // TODO: Add loading state
   // TODO: Replace with Suspense / ErrorBoundary
@@ -45,7 +27,7 @@ function BandsPage(props: BandsPageProps) {
   }
 
   // TODO: Add default image if not provided
-  const {name, image = '', description} = band || {};
+  const {name, image, description} = band;
 
   // TODO: Load image to server
   return (
@@ -54,7 +36,13 @@ function BandsPage(props: BandsPageProps) {
       <NavLink href={ROUTES.HOME} className="text-xs mb-4">
         ← Back to the bands list
       </NavLink>
-      <Image src={image} alt={name} width={200} height={200} className="mb-4" />
+      <Image
+        src={image ?? ''}
+        alt={name}
+        width={200}
+        height={200}
+        className="mb-4"
+      />
       <h2 className="pb-2 text-gray-400 font-semibold">Members</h2>
       <div className="flex flex-col mb-4">
         <ul>
@@ -63,7 +51,8 @@ function BandsPage(props: BandsPageProps) {
             return (
               <li key={member.id}>
                 <NavLink href={ROUTES.BANDS.MEMBERS.MEMBER(band.id, member.id)}>
-                  {firstName} {lastName} ({instruments.join(', ')})
+                  {firstName} {lastName} (
+                  {instruments.map((i) => i.Instrument.name).join(', ')})
                 </NavLink>
               </li>
             );
