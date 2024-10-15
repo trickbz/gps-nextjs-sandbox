@@ -13,7 +13,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - [ ] integrate recoil. Recoil dev tola. Async selectors. Suspense error boundary. 
 - [ ] SOLID
 - [ ] Mono repository. Update skills. 
-- [ ] API: convert snake case to camel case
+- [x] API: convert snake case to camel case
 - [x] real DB and ORM (Prisma?)
 - [ ] OAuth
 - [ ] Breadcrumbs
