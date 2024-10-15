@@ -1,3 +1,5 @@
+# Bands catalogue
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## TODO
@@ -19,7 +21,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - [ ] SEO data (metadata)
 - [x] Logger service to use console.log, console.error in one place only
 
-## Local developmentt
+## Local development
+
 - clone repository
 - npm i
 - make sure docker is running
@@ -30,23 +33,25 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
   - adminer (small tool to manage DB, port 4040)
   - create db structure by applying migrations: `npx prisma migrate deploy`
   - seed db with test data `npm run seed`
-  - connect to db using any db client (e.g. Database Client vscode extention or DBeaver)
+  - connect to db using any db client (e.g. Database Client vscode extension or DBeaver)
     - db name: bands_next
     - db user: postgres
     - db pwd : postgres
 
 ## DB migration usage (local development)
+
 - change the scheme
 - format schema if required: `npx prisma format`
 - delete migrations folder: `/prisma/migrations`
 - kill Docker containers with db and friend, compose down in docker extension
-- deploy docker container again: `docker-compose -f <path to compose file> up -d` (d - deamon, don't block the console, detached)
+- deploy docker container again: `docker-compose -f <path to compose file> up -d` (d - daemon, don't block the console, detached)
 - create a new migration: `npx prisma migrate dev --name init` (init - any name, migration will be created in migration folder, it will recreate Prisma client as well)
 - clear and seed the db: `npm run seed`
 - check that your changes in schema are correct
 - if you change the seed data, you should run `npm run seed` again. But remember, that IDs are auto-generated, and e.g. if you are on the page of some member, and you refresh the page, it will call with not expected id. So go to the bands page and use lins to navigate to the band member with correct id.
 
 ## Data access layers
+
 - BE > repository: access DB via ORM (e.g. Prisma) or other low level APIs and external services, atomic
 - BE > service: user one or several services implementing business logic
 - BE > API route: use services, provides REST / GraphQL endpoints for FE
