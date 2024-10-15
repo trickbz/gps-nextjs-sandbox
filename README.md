@@ -14,7 +14,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - [ ] API: convert snake case to camel case
 - [x] real DB and ORM (Prisma?)
 - [ ] OAuth
-- [ ] Braedcrumbs
+- [ ] Breadcrumbs
 - [ ] App icon (tab)
 - [ ] SEO data (metadata)
 - [x] Logger service to use console.log, console.error in one place only
