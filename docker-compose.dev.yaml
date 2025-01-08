@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    container_name: bands-next-postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bands_next
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    container_name: bands-next-adminer
+    restart: always
+    ports:
+      - 4080:8080
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx.dev
+    restart: always
+    container_name: bands-next-nginx
+    volumes:
+      - /home/apetrenk/docker-mount/bands-next/images:/usr/share/nginx/html/public/images
+    ports:
+      - 8080:80

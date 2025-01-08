@@ -1,0 +1,7 @@
+.heading {
+  @apply text-2xl;
+}
+
+.submitButton {
+  @apply mt-2;
+}

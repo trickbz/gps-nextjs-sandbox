@@ -1,36 +1,59 @@
+# Bands catalogue
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## TODO
 
-First, run the development server:
+- [x] Auth - login, logout, forgot password, register, route group already created
+- [x] Global not found page
+- [ ] use getStaticProps for sandbox page
+- [ ] sort out the issue that sandbox page is not generated right after build
+- [ ] prettier Tailwind plugin to sort classes, @apply and @layer Tailwind directive to combine classes, JIT mode
+- [x] move prettier settings from settings.json to .pretierrc
+- [ ] integrate recoil. Recoil dev tola. Async selectors. Suspense error boundary. 
+- [ ] SOLID
+- [ ] Mono repository. Update skills. 
+- [x] API: convert snake case to camel case
+- [x] real DB and ORM (Prisma?)
+- [ ] OAuth
+- [ ] Breadcrumbs
+- [ ] App icon (tab)
+- [ ] SEO data (metadata)
+- [x] Logger service to use console.log, console.error in one place only
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Local development
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- clone repository
+- npm i
+- make sure docker is running
+- create .env file with `DATABASE_URL` like `postgresql://postgres:postgres@localhost:5432/bands_next?schema=public`
+- `docker-compose -f ./docker-compose.dev.yaml up -d`, this will deploy to docker
+  - postgres DB (port 5432)
+  - nginx (port 8080, to emulate image hosting platform with images accessible by URLs)
+  - adminer (small tool to manage DB, port 4040)
+  - create db structure by applying migrations: `npx prisma migrate deploy`
+  - seed db with test data `npm run seed`
+  - connect to db using any db client (e.g. Database Client vscode extension or DBeaver)
+    - db name: bands_next
+    - db user: postgres
+    - db pwd : postgres
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## DB migration usage (local development)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- change the scheme
+- format schema if required: `npx prisma format`
+- delete migrations folder: `/prisma/migrations`
+- kill Docker containers with db and friend, compose down in docker extension
+- deploy docker container again: `docker-compose -f <path to compose file> up -d` (d - daemon, don't block the console, detached)
+- create a new migration: `npx prisma migrate dev --name init` (init - any name, migration will be created in migration folder, it will recreate Prisma client as well)
+- clear and seed the db: `npm run seed`
+- check that your changes in schema are correct
+- if you change the seed data, you should run `npm run seed` again. But remember, that IDs are auto-generated, and e.g. if you are on the page of some member, and you refresh the page, it will call with not expected id. So go to the bands page and use lins to navigate to the band member with correct id.
 
-## Learn More
+## Data access layers
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- BE > repository: access DB via ORM (e.g. Prisma) or other low level APIs and external services, atomic
+- BE > service: user one or several services implementing business logic
+- BE > API route: use services, provides REST / GraphQL endpoints for FE
+- FE > hook: like a service for FE, encapsulate logic of fetching API endpoints and providing data for components
+- FE > recoil: state management, can be used alone (including API calls in selectors, as alternative) or together with hooks

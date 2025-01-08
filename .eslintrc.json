@@ -1,3 +1,65 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "eslint-config-airbnb"
+  ],
+  "plugins": ["import", "react"],
+  "rules": {
+    "object-curly-spacing": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_",
+        "caughtErrors": "all",
+        "caughtErrorsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "import/extensions": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/order": "off",
+    "no-shadow": "warn",
+    "react/jsx-one-expression-per-line": "off",
+    "no-plusplus": "warn",
+    "import/prefer-default-export": "off",
+    "no-console": "warn",
+    "react/require-default-props": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-props-no-spreading":"warn",
+    "function-paren-newline":"off",
+    "operator-linebreak":"off",
+    "react/jsx-filename-extension": [
+      1,
+      {"extensions": [".js", ".jsx", ".tsx"]}
+    ],
+    "react/jsx-curly-brace-presence": [
+      "error",
+      {"props": "never", "children": "never"}
+    ],
+    "object-curly-newline":"off",
+    // "object-curly-newline": [
+    //   "error",
+    //   {
+    //     "ObjectExpression": {"consistent": true, "multiline": true},
+    //     "ObjectPattern": {"consistent": true, "multiline": true},
+    //     "ImportDeclaration": "off",
+    //     "ExportDeclaration": {"multiline": true, "minProperties": 3}
+    //   }
+    // ],
+    "jsx-a11y/label-has-associated-control": ["error", {
+      "required": {
+        "some": ["nesting", "id"]
+      }
+    }],
+    "jsx-a11y/label-has-for": ["error", {
+      "required": {
+        "some": ["nesting", "id"]
+      }
+    }]
+  }
 }

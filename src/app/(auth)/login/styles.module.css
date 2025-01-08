@@ -1,0 +1,11 @@
+.errorMessage {
+  @apply text-red-500 m-0;
+}
+
+.form {
+  @apply flex flex-col;
+}
+
+.input {
+  @apply mb-1 last-of-type:mb-2;
+}

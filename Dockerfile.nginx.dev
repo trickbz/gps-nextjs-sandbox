@@ -1,0 +1,8 @@
+FROM node:alpine3.20 AS images
+WORKDIR /app
+COPY public/images /app/images
+
+FROM nginx:alpine
+COPY --from=images /app/images /usr/share/nginx/images
+EXPOSE 8080
+CMD [ "nginx", "-g", "daemon off;" ]
