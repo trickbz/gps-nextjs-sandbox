@@ -2,9 +2,11 @@
   "extends": [
     "next/core-web-vitals",
     "next/typescript",
-    "eslint-config-airbnb"
+    "eslint-config-airbnb",
+    "eslint:recommended",
+    "plugin:jest/recommended"
   ],
-  "plugins": ["import", "react"],
+  "plugins": ["import", "react", "jest"],
   "rules": {
     "object-curly-spacing": "off",
     "no-unused-vars": "off",
@@ -28,6 +30,7 @@
     "no-plusplus": "warn",
     "import/prefer-default-export": "off",
     "no-console": "warn",
+    "no-confusing-arrow": "warn",
     "react/require-default-props": "off",
     "implicit-arrow-linebreak": "off",
     "react/jsx-props-no-spreading":"warn",
