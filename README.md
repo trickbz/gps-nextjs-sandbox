@@ -31,12 +31,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
   - postgres DB (port 5432)
   - nginx (port 8080, to emulate image hosting platform with images accessible by URLs)
   - adminer (small tool to manage DB, port 4040)
-  - create db structure by applying migrations: `npx prisma migrate deploy`
-  - seed db with test data `npm run seed`
-  - connect to db using any db client (e.g. Database Client vscode extension or DBeaver)
-    - db name: bands_next
-    - db user: postgres
-    - db pwd : postgres
+- `npx prisma generate` - to see .env variables
+- create db structure by applying migrations: `npx prisma migrate deploy`
+- seed db with test data `npm run seed`
+- connect to db using any db client (e.g. Database Client vscode extension or DBeaver)
+  - db name: bands_next
+  - db user: postgres
+  - db pwd : postgres
 
 ## DB migration usage (local development)
 
